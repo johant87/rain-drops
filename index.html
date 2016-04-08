@@ -7,22 +7,27 @@
   <title>Rain drops</title>
   <meta name="description">
   <meta name="Johan" content="rain">
-  <!-- <link rel="stylesheet" href="styles.css"> -->
+  <link rel="stylesheet" href="styles.css">
   <script src="dist/rainyday.min.js"> </script>
   <script>
-    var engine = RainyDay({
-      image: element,
-      parentElement: someDiv,
-      crop: [0, 0, 50, 60],
-      blur: 10,
-      opacity: 1
-    });
+      function run() {
+          var image = document.getElementById('background');
+          image.onload = function() {
+              var engine = new RainyDay({
+                  image: this
+              });
+              engine.rain([ [1, 2, 8000] ]);
+              engine.rain([ [3, 2, 0.88], [5, 5, 0.9], [6, 2, 1] ], 100);
+          };
+          image.crossOrigin = 'anonymous';
+          image.src = "https://upload.wikimedia.org/wikipedia/commons/a/a3/Canal-In-Amsterdam-At-Night-2009.jpg";
+      }
   </script>
 
 </head>
 
-<body>
+<body onload="run();">
 
-<img id="background" src="bg.jpg"/>
+<img id="background" src=""/>
 </body>
 </html>
